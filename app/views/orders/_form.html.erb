@@ -1,0 +1,16 @@
+<div class="container">
+<%= form_with(model: order, local: true) do |form| %>
+  <%= form.nested_fields_for :order_items, @order.order_items.new do |f| %>
+    <div class="row">
+      <div class="col-xs-12"><%= f.remove_nested_fields_link 'x', class: 'btn btn-primary brand-button new', role: 'button' %></div>
+    </div>
+    <div class="row">
+      <%= f.select :menu_items_id, options_for_select(menu_items), {:include_blank => true} %>
+    </div>
+  <% end %>
+  <%= form.add_nested_fields_link :order_items, "+", class: "btn btn-primary brand-button player new", role: 'button' %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>
